@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link';
 import { useRouter } from 'next/router'
 import Layout from '../components/layout'
 
@@ -33,6 +34,13 @@ const Home: NextPage = () => {
           <button className="btn btn-primary w-40" onClick={() => onCreateChannel()}>
             สร้างห้องใหม่
           </button>
+        </div>
+
+        <hr className='d-block mt-5' />
+        <div className="text-center mt-5">
+          <Link href="/wallets">
+            <a className='btn bg-orange-500 text-white inline-block'>Connect Matamask</a>
+          </Link>
         </div>
       </div>
     </Layout>
