@@ -177,31 +177,18 @@ const Channel: NextPage<Props> = ({ host }) => {
                 players: prevSlot.players.map(thePlayer => {
                     if (thePlayer.point > 7) {
                         return { ...thePlayer, status: 'ไพ่ป๊อก' };
+                    } else if (thePlayer.point <= lowestNumber || thePlayer.point < 2) {
+                        return { ...thePlayer, status: 'บังคับจั่ว' };
+                    } else if (thePlayer.point < 5) {
+                        return { ...thePlayer, status: 'จั่วไพ่' };
                     }
 
-                    if (thePlayer.point <= lowestNumber) { return { ...thePlayer, status: 'บังคับจั่ว' }; }
                     return { ...thePlayer, status: '' };
                 }),
                 self: { ...prevSlot.self, status: '' },
             }
         });
 
-        setSlotPlaying(prevSlot => {
-            return {
-                ...prevSlot,
-                players: prevSlot.players.map(thePlayer => {
-                    if (!thePlayer.status) {
-                        if (thePlayer.point < 2) {
-                            return { ...thePlayer, status: 'บังคับจั่ว' };
-                        }
-                        if (thePlayer.point < 5) {
-                            return { ...thePlayer, status: 'จั่วไพ่' };
-                        }
-                    }
-                    return { ...thePlayer };
-                }),
-            }
-        });
         startTimer();
     }
 
